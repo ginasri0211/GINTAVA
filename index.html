@@ -1,0 +1,1144 @@
+```html
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Darurat Karhutla Indonesia: Analisis Mendalam, Faktor, Aktor & Solusi | NusantaraHijau.id</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter & Merriweather untuk nuansa editorial berita yang kuat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        newsRed: '#C8102E',
+                        newsDark: '#111827',
+                        emberOrange: '#EA580C',
+                        forestGreen: '#15803D',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar & utility animations */
+        @keyframes marquee {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 28s linear infinite;
+        }
+        .animate-marquee:hover {
+            animation-play-state: paused;
+        }
+        /* Ukuran font dinamis untuk mode baca */
+        .article-body-sm p, .article-body-sm li { font-size: 0.95rem; line-height: 1.7; }
+        .article-body-md p, .article-body-md li { font-size: 1.075rem; line-height: 1.85; }
+        .article-body-lg p, .article-body-lg li { font-size: 1.225rem; line-height: 1.95; }
+
+        /* Hide scrollbar for horizontal pill navigation on mobile */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-200 antialiased">
+
+    <!-- Toast Notification Container (Pengganti alert) -->
+    <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- Top Utility Bar -->
+    <div class="bg-slate-900 text-slate-300 text-xs border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-4">
+                <span id="current-date" class="font-medium text-slate-200"><i class="fa-regular fa-calendar mr-1.5 text-emberOrange"></i>Kamis, 12 November 2026</span>
+                <span class="hidden sm:inline text-slate-600">|</span>
+                <span class="hidden sm:inline text-emerald-400 font-medium"><i class="fa-solid fa-satellite-dish mr-1"></i>Pantauan Satelit Terra/Aqua: Aktif</span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span class="text-slate-400 hidden md:inline">Tampilan Baca:</span>
+                <!-- Kontrol Ukuran Font -->
+                <div class="flex items-center bg-slate-800 rounded-lg p-0.5 border border-slate-700" role="group" aria-label="Ukuran Teks">
+                    <button onclick="setFontSize('sm')" id="btn-font-sm" class="px-2 py-0.5 rounded text-xs hover:text-white transition" title="Teks Kecil">A-</button>
+                    <button onclick="setFontSize('md')" id="btn-font-md" class="px-2 py-0.5 rounded text-xs bg-slate-700 text-white font-semibold transition" title="Teks Normal">A</button>
+                    <button onclick="setFontSize('lg')" id="btn-font-lg" class="px-2 py-0.5 rounded text-xs hover:text-white transition" title="Teks Besar">A+</button>
+                </div>
+                <!-- Toggle Dark Mode -->
+                <button onclick="toggleDarkMode()" id="dark-mode-toggle" class="flex items-center gap-1.5 bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded-lg border border-slate-700 transition" title="Ubah Tema Terang/Gelap">
+                    <i id="theme-icon" class="fa-solid fa-moon text-amber-400"></i>
+                    <span id="theme-label" class="hidden sm:inline">Mode Gelap</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Masthead & Navigation -->
+    <header class="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-newsRed to-emberOrange flex items-center justify-center text-white shadow-md group-hover:scale-105 transition-transform">
+                        <i class="fa-solid fa-fire-flame-curved text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="font-serif font-black text-2xl tracking-tight text-slate-900 dark:text-white">NUSANTARA<span class="text-newsRed">HIJAU</span></span>
+                        <p class="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-400 font-semibold -mt-1">Jurnalisme Lingkungan & Investigasi</p>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <a href="#top" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Beranda</a>
+                    <a href="#pendahuluan" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Nasional</a>
+                    <a href="#faktor" class="px-3 py-2 rounded-lg text-sm font-bold text-newsRed bg-red-50 dark:bg-red-950/40 rounded-lg transition">Lingkungan</a>
+                    <a href="#pelaku" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Investigasi</a>
+                    <a href="#statistik-widget" class="px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition">Infografis</a>
+                </nav>
+
+                <!-- Search & Mobile Menu Button -->
+                <div class="flex items-center gap-2">
+                    <button onclick="showToast('Fitur pencarian arsip berita sedang dimuat...')" class="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Cari Berita">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" aria-label="Menu Navigasi">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Dropdown Navigation -->
+            <div id="mobile-menu" class="hidden md:hidden pb-4 border-t border-slate-100 dark:border-slate-800 pt-2 space-y-1">
+                <a href="#top" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Beranda</a>
+                <a href="#pendahuluan" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Nasional</a>
+                <a href="#faktor" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-bold text-newsRed bg-red-50 dark:bg-red-950/40">Lingkungan</a>
+                <a href="#pelaku" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Investigasi</a>
+                <a href="#statistik-widget" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg text-sm font-semibold text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800">Infografis</a>
+            </div>
+        </div>
+
+        <!-- Breaking News Ticker -->
+        <div class="bg-newsRed text-white overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-9">
+                <span class="bg-slate-900 text-white text-[11px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded mr-3 shrink-0 flex items-center gap-1.5">
+                    <span class="w-2 h-2 rounded-full bg-red-500 animate-ping"></span> BREAKING NEWS
+                </span>
+                <div class="overflow-hidden relative w-full">
+                    <div class="animate-marquee text-xs sm:text-sm font-medium">
+                        STATUS SIAGA DARURAT: Titik panas (hotspot) terpantau meningkat di Sumatera Selatan, Riau, dan Kalimantan Tengah • Manggala Agni & BNPB kerahkan 14 helikopter water bombing • BMKG peringatkan potensi puncak musim kemarau kering di kawasan gambut • KLHK segel 12 konsesi perusahaan terindikasi karhutla.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main id="top" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        
+        <!-- Breadcrumb -->
+        <nav class="flex items-center text-xs text-slate-500 dark:text-slate-400 mb-4 space-x-2" aria-label="Breadcrumb">
+            <a href="#" class="hover:text-newsRed transition">Beranda</a>
+            <span><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            <a href="#faktor" class="hover:text-newsRed transition">Lingkungan & Iklim</a>
+            <span><i class="fa-solid fa-chevron-right text-[10px]"></i></span>
+            <span class="text-slate-800 dark:text-slate-200 font-medium truncate">Laporan Khusus Karhutla Indonesia</span>
+        </nav>
+
+        <!-- Headline Section -->
+        <header class="mb-8">
+            <div class="flex flex-wrap items-center gap-2 mb-3">
+                <span class="bg-newsRed text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">Laporan Utama</span>
+                <span class="bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-300 text-xs font-semibold px-3 py-1 rounded-full border border-amber-200 dark:border-amber-800">Krisis Ekologi & Kabut Asap</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400 ml-auto"><i class="fa-regular fa-clock mr-1"></i>Waktu baca: 8 menit</span>
+            </div>
+
+            <h1 class="font-serif text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-4">
+                Bara di Tanah Gambut: Mengurai Akar Masalah, Jejak Aktor, dan Strategi Memutus Siklus Karhutla Indonesia
+            </h1>
+
+            <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 font-normal leading-relaxed mb-6 border-l-4 border-emberOrange pl-4">
+                Setiap musim kemarau tiba, kepulan asap pekat kembali mengancam paru-paru jutaan warga di Sumatera dan Kalimantan. Lebih dari sekadar anomali cuaca, kebakaran hutan dan lahan adalah krisis tata kelola ruang yang menuntut penegakan hukum tanpa kompromi.
+            </p>
+
+            <!-- Author & Share Bar -->
+            <div class="flex flex-wrap items-center justify-between gap-4 py-4 border-y border-slate-200 dark:border-slate-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-11 h-11 rounded-full bg-slate-200 dark:bg-slate-800 flex items-center justify-center text-slate-700 dark:text-slate-300 font-bold text-sm border-2 border-emberOrange">
+                        AR
+                    </div>
+                    <div>
+                        <p class="text-sm font-bold text-slate-900 dark:text-white">Tim Investigasi NusantaraHijau</p>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Editor: <span class="font-medium text-slate-700 dark:text-slate-300">Arif Rahman & Nadya Putri</span> • Jakarta & Palangka Raya</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-2">
+                    <span class="text-xs text-slate-500 dark:text-slate-400 mr-1 hidden sm:inline">Bagikan:</span>
+                    <button onclick="copyArticleLink()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-semibold flex items-center gap-1.5 transition">
+                        <i class="fa-solid fa-link"></i> Salin Tautan
+                    </button>
+                    <button onclick="showToast('Membagikan artikel ke WhatsApp...')" class="w-9 h-9 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center transition" title="Bagikan ke WhatsApp">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                    </button>
+                    <button onclick="showToast('Membagikan artikel ke X (Twitter)...')" class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-slate-800 text-white flex items-center justify-center transition" title="Bagikan ke X">
+                        <i class="fa-brands fa-x-twitter text-sm"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Visual Illustration (Dramatic SVG Forest Fire & Haze Scene) -->
+        <figure class="mb-8 rounded-2xl overflow-hidden shadow-lg border border-slate-200 dark:border-slate-800 bg-slate-900 relative">
+            <div class="w-full h-64 sm:h-80 md:h-96 relative overflow-hidden">
+                <!-- Ilustrasi SVG Dramatis Kebakaran Hutan & Lahan Gambut -->
+                <svg viewBox="0 0 1200 500" preserveAspectRatio="xMidYMid slice" class="w-full h-full">
+                    <defs>
+                        <linearGradient id="smokeSky" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#1e1b18" />
+                            <stop offset="45%" stop-color="#7c2d12" />
+                            <stop offset="80%" stop-color="#ea580c" />
+                            <stop offset="100%" stop-color="#f59e0b" />
+                        </linearGradient>
+                        <radialGradient id="fireGlow" cx="50%" cy="85%" r="55%">
+                            <stop offset="0%" stop-color="#fef08a" stop-opacity="0.9" />
+                            <stop offset="40%" stop-color="#f97316" stop-opacity="0.6" />
+                            <stop offset="100%" stop-color="#7c2d12" stop-opacity="0" />
+                        </radialGradient>
+                    </defs>
+                    <!-- Latar Belakang Langit Kabut Asap -->
+                    <rect width="1200" height="500" fill="url(#smokeSky)" />
+                    <rect width="1200" height="500" fill="url(#fireGlow)" />
+                    
+                    <!-- Gumpalan Asap Tebal -->
+                    <g fill="#292524" opacity="0.55">
+                        <circle cx="200" cy="140" r="140" />
+                        <circle cx="380" cy="110" r="170" />
+                        <circle cx="620" cy="130" r="190" />
+                        <circle cx="880" cy="100" r="160" />
+                        <circle cx="1060" cy="150" r="140" />
+                    </g>
+                    <g fill="#44403c" opacity="0.45">
+                        <circle cx="120" cy="220" r="120" />
+                        <circle cx="480" cy="200" r="150" />
+                        <circle cx="760" cy="210" r="160" />
+                        <circle cx="990" cy="230" r="130" />
+                    </g>
+
+                    <!-- Siluet Bukit & Hutan Latar Belakang -->
+                    <path d="M0,360 Q300,310 600,350 T1200,330 L1200,500 L0,500 Z" fill="#1c1917" opacity="0.85" />
+
+                    <!-- Siluet Pepohonan Terbakar -->
+                    <g fill="#0c0a09">
+                        <!-- Pohon-pohon tegak dan ranting hangus -->
+                        <path d="M110,500 L118,240 L126,500 Z M118,310 L85,270 L90,265 L118,300 Z M120,280 L155,245 L160,250 L120,290 Z" />
+                        <path d="M260,500 L270,210 L280,500 Z M268,290 L225,240 L232,235 L268,280 Z M272,260 L315,215 L322,222 L272,272 Z" />
+                        <path d="M430,500 L438,260 L446,500 Z M436,330 L405,295 L410,290 L436,320 Z" />
+                        <path d="M680,500 L692,195 L704,500 Z M690,275 L640,220 L648,214 L690,264 Z M694,250 L745,205 L752,212 L694,262 Z" />
+                        <path d="M890,500 L899,235 L908,500 Z M898,305 L860,265 L866,260 L898,295 Z M901,280 L940,245 L945,252 L901,290 Z" />
+                        <path d="M1070,500 L1080,220 L1090,500 Z M1078,290 L1035,245 L1042,240 L1078,280 Z" />
+                    </g>
+
+                    <!-- Lidah Api di Permukaan Lahan Gambut -->
+                    <g opacity="0.9">
+                        <path d="M0,500 Q60,390 120,460 Q180,360 250,450 Q330,340 410,455 Q500,350 590,445 Q680,330 770,450 Q860,360 950,455 Q1050,370 1130,450 Q1170,400 1200,460 L1200,500 Z" fill="#ea580c" />
+                        <path d="M40,500 Q110,410 180,470 Q260,390 340,475 Q440,385 530,470 Q640,375 740,475 Q850,400 960,475 Q1070,410 1160,475 L1200,500 L0,500 Z" fill="#facc15" />
+                    </g>
+
+                    <!-- Percikan Bara Api -->
+                    <g fill="#fef08a">
+                        <circle cx="190" cy="330" r="3" />
+                        <circle cx="320" cy="290" r="2.5" />
+                        <circle cx="510" cy="310" r="4" />
+                        <circle cx="640" cy="260" r="3" />
+                        <circle cx="810" cy="300" r="3.5" />
+                        <circle cx="970" cy="280" r="2.5" />
+                    </g>
+                </svg>
+                <!-- Overlay Badge di atas ilustrasi -->
+                <div class="absolute top-4 left-4 bg-black/70 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-lg border border-white/15 flex items-center gap-2">
+                    <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+                    <span>Ilustrasi Editorial: Kebakaran Lahan Gambut & Kabut Asap</span>
+                </div>
+            </div>
+            <figcaption class="bg-slate-900 text-slate-300 text-xs px-4 py-3 flex flex-col sm:flex-row sm:justify-between gap-1 border-t border-slate-800">
+                <span><strong>Keterangan:</strong> Api di lahan gambut dapat menjalar di bawah permukaan tanah hingga kedalaman 2-4 meter, menyulitkan pemadaman konvensional.</span>
+                <span class="text-slate-400 shrink-0">Grafis: Tim Visual NusantaraHijau</span>
+            </figcaption>
+        </figure>
+
+        <!-- Sticky Quick Navigation Pills (Interactive Tab/Filter untuk melompat cepat) -->
+        <div class="sticky top-[108px] z-30 bg-slate-50/95 dark:bg-slate-950/95 backdrop-blur-md py-3 mb-8 border-b border-slate-200 dark:border-slate-800">
+            <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1" id="section-nav">
+                <span class="text-xs font-bold uppercase tracking-wider text-slate-400 mr-1 shrink-0"><i class="fa-solid fa-compass mr-1"></i>Lompat Ke:</span>
+                <a href="#pendahuluan" data-target="pendahuluan" class="nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-newsRed text-white shadow-sm transition">1. Situasi Terkini</a>
+                <a href="#faktor" data-target="faktor" class="nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-newsRed transition">2. Faktor Penyebab</a>
+                <a href="#dampak" data-target="dampak" class="nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-newsRed transition">3. Dampak & Akibat</a>
+                <a href="#pelaku" data-target="pelaku" class="nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-newsRed transition">4. Pelaku Terduga</a>
+                <a href="#organisasi" data-target="organisasi" class="nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-newsRed transition">5. Organisasi Terlibat</a>
+                <a href="#solusi" data-target="solusi" class="nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-newsRed transition">6. Cara Mengatasi</a>
+            </div>
+        </div>
+
+        <!-- Two-Column Layout: Main Article (Left 8 Cols) & Sidebar Widgets (Right 4 Cols) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+            
+            <!-- MAIN ARTICLE COLUMN -->
+            <article id="article-content" class="lg:col-span-8 article-body-md space-y-12">
+
+                <!-- BAGIAN 1: PENDAHULUAN BERITA -->
+                <section id="pendahuluan" class="scroll-mt-36">
+                    <div class="flex items-center gap-2 text-newsRed font-bold text-xs uppercase tracking-wider mb-2">
+                        <span class="w-6 h-0.5 bg-newsRed"></span> Bagian 01 • Situasi Terkini
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                        Kepungan Asap di Sumatera dan Kalimantan: Krisis Tahunan yang Belum Usai
+                    </h2>
+                    <p class="mb-4 text-slate-700 dark:text-slate-300">
+                        <strong class="font-serif text-slate-900 dark:text-white">JAKARTA, NUSANTARAHIJAU.ID</strong> — Langit di sebagian wilayah Palangka Raya, Pontianak, Jambi, hingga Palembang kembali memutih pekat akibat selimut kabut asap yang muncul dari kebakaran hutan dan lahan (karhutla). Memasuki periode puncak musim kemarau, citra satelit mendeteksi lonjakan signifikan titik panas (<em>hotspot</em>) dengan tingkat kepercayaan tinggi di enam provinsi prioritas rawan karhutla: <strong>Riau, Jambi, Sumatera Selatan, Kalimantan Barat, Kalimantan Tengah, dan Kalimantan Selatan</strong>.
+                    </p>
+                    <p class="mb-4 text-slate-700 dark:text-slate-300">
+                        Kondisi paling krusial terjadi di ekosistem Kesatuan Hidrologis Gambut (KHG). Berbeda dengan kebakaran hutan mineral biasa, kebakaran di lahan gambut jauh lebih sulit dipadamkan karena bara api merambat secara tersembunyi di bawah permukaan tanah. Ketika permukaan tampak padam, asap putih pekat tetap mengepul dari celah-celah gambut kering yang kaya akan bahan organik.
+                    </p>
+
+                    <!-- Pull Quote -->
+                    <blockquote class="my-6 p-6 rounded-2xl bg-gradient-to-r from-amber-50 to-orange-50 dark:from-slate-900 dark:to-slate-800/80 border-l-4 border-newsRed shadow-sm">
+                        <p class="font-serif italic text-lg sm:text-xl text-slate-800 dark:text-slate-100 mb-2">
+                            "Gambut yang sudah dikeringkan lewat kanal-kanal drainase ibarat spons raksasa yang disiram bensin. Sekali tersulut percikan api kecil, ia akan membara berminggu-minggu dan hanya bisa dipadamkan sepenuhnya oleh hujan lebat atau pembasahan total."
+                        </p>
+                        <footer class="text-xs font-bold uppercase tracking-wider text-emberOrange">
+                            — Dr. Bambang Hero Saharjo, Pakar Forensik Kebakaran Hutan & Lahan
+                        </footer>
+                    </blockquote>
+                </section>
+
+                <!-- BAGIAN 2: FAKTOR-FAKTOR PENYEBAB KARHUTLA -->
+                <section id="faktor" class="scroll-mt-36 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-2 text-newsRed font-bold text-xs uppercase tracking-wider mb-2">
+                        <span class="w-6 h-0.5 bg-newsRed"></span> Bagian 02 • Akar Masalah
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                        Faktor-Faktor Terjadinya Karhutla: Kombinasi Alam dan Ulah Manusia
+                    </h2>
+                    <p class="mb-6 text-slate-700 dark:text-slate-300">
+                        Berdasarkan berbagai kajian forensik lingkungan dan data Kementerian Lingkungan Hidup dan Kehutanan (KLHK), lebih dari <strong>90% kejadian karhutla di Indonesia dipicu oleh aktivitas manusia</strong>, sementara faktor iklim dan kondisi alam berperan sebagai katalisator yang memperparah penyebaran api.
+                    </p>
+
+                    <!-- Interactive Cards: Faktor Alam vs Faktor Manusia -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <!-- Card Faktor Alam -->
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950 text-amber-600 flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-sun"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">A. Faktor Alam & Iklim</h3>
+                                    <span class="text-xs text-slate-500">Katalisator Kerentanan Lahan</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 text-slate-700 dark:text-slate-300">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-exclamation text-amber-500 mt-1.5 text-xs"></i>
+                                    <div><strong>Fenomena El Niño & IOD Positif:</strong> Anomali suhu muka laut Pasifik dan Samudra Hindia menyebabkan musim kemarau berlangsung lebih panjang dan kering ekstrem, menurunkan curah hujan hingga di bawah normal.</div>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-exclamation text-amber-500 mt-1.5 text-xs"></i>
+                                    <div><strong>Karakteristik Lahan Gambut Kering:</strong> Saat muka air tanah turun drastis (>40 cm di bawah permukaan), gambut mengalami kondisi <em>irreversible drying</em> (kering tak balik) sehingga sifatnya berubah menyerupai batu bara muda yang sangat mudah terbakar.</div>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-exclamation text-amber-500 mt-1.5 text-xs"></i>
+                                    <div><strong>Tiupan Angin Kencang & Sambaran Petir:</strong> Angin kencang di lahan terbuka mempercepat lompatan bara api (<em>spotting</em>) ke area vegetasi kering di sekitarnya.</div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Card Faktor Manusia -->
+                        <div class="bg-white dark:bg-slate-900 rounded-2xl p-6 border border-slate-200 dark:border-slate-800 shadow-sm">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-red-100 dark:bg-red-950 text-newsRed flex items-center justify-center text-lg">
+                                    <i class="fa-solid fa-fire"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg text-slate-900 dark:text-white">B. Faktor Antropogenik (Manusia)</h3>
+                                    <span class="text-xs text-slate-500">Pemicu Utama Munculnya Api</span>
+                                </div>
+                            </div>
+                            <ul class="space-y-3 text-slate-700 dark:text-slate-300">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-exclamation text-newsRed mt-1.5 text-xs"></i>
+                                    <div><strong>Pembukaan Lahan dengan Membakar (<em>Slash-and-Burn</em>):</strong> Cara paling murah dan cepat untuk membersihkan semak belukar guna persiapan perkebunan kelapa sawit, akasia (HTI), maupun pertanian.</div>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-exclamation text-newsRed mt-1.5 text-xs"></i>
+                                    <div><strong>Pembuatan Kanal Drainase & Pembalakan Liar:</strong> Pengeringan rawa gambut untuk akses kayu ilegal dan perkebunan merusak sistem hidrologi alami yang menjaga kelembapan hutan.</div>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-exclamation text-newsRed mt-1.5 text-xs"></i>
+                                    <div><strong>Kelalaian & Konflik Tenurial:</strong> Pembuangan puntung rokok sembarangan, api unggun pemburu/pencari ikan yang tidak dipadamkan sempurna, hingga pembakaran disengaja akibat sengketa klaim lahan.</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BAGIAN 3: DAMPAK & AKIBAT KARHUTLA -->
+                <section id="dampak" class="scroll-mt-36 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-2 text-newsRed font-bold text-xs uppercase tracking-wider mb-2">
+                        <span class="w-6 h-0.5 bg-newsRed"></span> Bagian 03 • Efek Domino
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                        Dampak & Akibat Multidimensi: Dari Krisis Kesehatan hingga Ancaman Iklim Global
+                    </h2>
+                    <p class="mb-6 text-slate-700 dark:text-slate-300">
+                        Karhutla tidak hanya menghanguskan tegakan pohon, tetapi memicu kerugian berantai lintas sektor dan lintas negara (<em>transboundary haze</em>) yang memukul sendi kehidupan masyarakat.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emberOrange transition">
+                            <div class="text-emberOrange text-2xl mb-2"><i class="fa-solid fa-lungs-virus"></i></div>
+                            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-1.5">1. Krisis Kesehatan Masyarakat (ISPA)</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                Partikel halus beracun (PM2.5 dan PM10), karbon monoksida, dan sianida memicu lonjakan kasus Infeksi Saluran Pernapasan Akut (ISPA), asma, iritasi mata, hingga gangguan tumbuh kembang janin dan balita.
+                            </p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emberOrange transition">
+                            <div class="text-emerald-600 text-2xl mb-2"><i class="fa-solid fa-paw"></i></div>
+                            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-1.5">2. Kerusakan Ekosistem & Satwa Terancam</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                Musnahnya habitat alami memaksa satwa dilindungi seperti <strong>Orangutan Kalimantan, Harimau Sumatera, dan Beruang Madu</strong> keluar dari hutan, terjebak api, atau berkonflik dengan pemukiman warga.
+                            </p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emberOrange transition">
+                            <div class="text-blue-600 text-2xl mb-2"><i class="fa-solid fa-plane-slash"></i></div>
+                            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-1.5">3. Kelumpuhan Ekonomi & Transportasi</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                Jarak pandang di bawah 500 meter memaksa penutupan bandara, pembatalan ratusan penerbangan, gangguan pelayaran sungai/laut, peliburan sekolah, hingga kerugian ekonomi puluhan triliun rupiah.
+                            </p>
+                        </div>
+
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 hover:border-emberOrange transition">
+                            <div class="text-purple-600 text-2xl mb-2"><i class="fa-solid fa-earth-asia"></i></div>
+                            <h3 class="font-bold text-base text-slate-900 dark:text-white mb-1.5">4. Emisi Karbon & Ketegangan Diplomatik</h3>
+                            <p class="text-sm text-slate-600 dark:text-slate-400">
+                                Lahan gambut menyimpan cadangan karbon 20 kali lebih besar dari hutan mineral. Ketika terbakar, Indonesia melepas ratusan juta ton emisi gas rumah kaca dan memicu protes kabut asap lintas batas ke negara tetangga (Singapura & Malaysia).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BAGIAN 4: PELAKU YANG TERDUGA & PENEGAKAN HUKUM -->
+                <section id="pelaku" class="scroll-mt-36 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-2 text-newsRed font-bold text-xs uppercase tracking-wider mb-2">
+                        <span class="w-6 h-0.5 bg-newsRed"></span> Bagian 04 • Jejak Investigasi
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                        Siapa di Balik Api? Mengungkap Aktor & Pelaku yang Terduga
+                    </h2>
+                    <p class="mb-5 text-slate-700 dark:text-slate-300">
+                        Dalam berbagai pengusutan tindak pidana lingkungan oleh Direktorat Jenderal Penegakan Hukum (Gakkum) KLHK dan Satgas Karhutla Polri, aktor yang terduga membakar lahan umumnya terbagi ke dalam tiga spektrum utama dengan motif ekonomi yang berbeda:
+                    </p>
+
+                    <div class="space-y-4 mb-6">
+                        <!-- Aktor 1 -->
+                        <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                            <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                                <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+                                    <span class="text-newsRed mr-1.5">01.</span> Korporasi Perkebunan & Kehutanan Nakal
+                                </h3>
+                                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-red-100 text-newsRed dark:bg-red-950 dark:text-red-300">Skala Luas & Sistematis</span>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                                Perusahaan pemegang izin konsesi perkebunan sawit atau Hutan Tanaman Industri (HTI) kerap terindikasi membiarkan atau menggunakan pihak ketiga untuk membakar lahan demi memangkas biaya pembersihan lahan (<em>land clearing</em>) secara mekanis yang jauh lebih mahal. Abu sisa pembakaran juga dimanfaatkan untuk menurunkan tingkat keasaman (pH) tanah gambut secara instan.
+                            </p>
+                        </div>
+
+                        <!-- Aktor 2 -->
+                        <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                            <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                                <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+                                    <span class="text-newsRed mr-1.5">02.</span> Cukong, Pemodal Lokal & Makelar Tanah
+                                </h3>
+                                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">Spekulasi Lahan</span>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                                Kelompok pemodal perorangan yang menguasai puluhan hingga ratusan hektare lahan tidak bertuan atau kawasan hutan terdegradasi. Mereka menyewa buruh harian lepas untuk membakar semak belukar agar nilai jual tanah meningkat atau siap ditanami komoditas perkebunan secara ilegal.
+                            </p>
+                        </div>
+
+                        <!-- Aktor 3 -->
+                        <div class="p-5 rounded-2xl bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800">
+                            <div class="flex flex-wrap justify-between items-center gap-2 mb-2">
+                                <h3 class="font-bold text-base sm:text-lg text-slate-900 dark:text-white">
+                                    <span class="text-newsRed mr-1.5">03.</span> Oknum Petani & Masyarakat Pembuka Lahan Skala Kecil
+                                </h3>
+                                <span class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-slate-200 text-slate-700 dark:bg-slate-800 dark:text-slate-300">Keterbatasan Akses Teknologi</span>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed">
+                                Sebagian petani kecil masih mempraktikkan pembukaan lahan tradisional dengan membakar karena keterbatasan modal untuk menyewa alat berat atau membeli herbisida. Meski skalanya kecil (1–2 hektare), api sering kali tidak terkendali saat angin kemarau bertiup kencang dan merembet ke kawasan hutan lindung.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Box Penegakan Hukum -->
+                    <div class="p-5 rounded-2xl bg-slate-900 text-slate-200 border border-slate-700">
+                        <h4 class="font-bold text-amber-400 text-sm uppercase tracking-wider mb-2"><i class="fa-solid fa-gavel mr-2"></i>Instrumen Penegakan Hukum (Strict Liability)</h4>
+                        <p class="text-sm text-slate-300 leading-relaxed">
+                            Berdasarkan <strong>UU No. 32 Tahun 2009 tentang Perlindungan dan Pengelolaan Lingkungan Hidup</strong>, pelaku pembakaran hutan diancam pidana penjara maksimal 10 tahun dan denda hingga Rp10 miliar. Khusus korporasi, negara menerapkan asas <em>strict liability</em> (tanggung jawab mutlak)—pemegang izin bertanggung jawab atas kebakaran yang terjadi di dalam konsesinya tanpa perlu pembuktian unsur kesalahan, disertai sanksi administratif berupa pembekuan hingga pencabutan izin usaha.
+                        </p>
+                    </div>
+                </section>
+
+                <!-- BAGIAN 5: ORGANISASI & LEMBAGA YANG TERLIBAT -->
+                <section id="organisasi" class="scroll-mt-36 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-2 text-newsRed font-bold text-xs uppercase tracking-wider mb-2">
+                        <span class="w-6 h-0.5 bg-newsRed"></span> Bagian 05 • Kolaborasi Lintas Sektor
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                        Garda Terdepan: Organisasi & Lembaga dalam Pencegahan dan Penanggulangan
+                    </h2>
+                    <p class="mb-6 text-slate-700 dark:text-slate-300">
+                        Penanganan karhutla membutuhkan kerja sama terpadu antara instansi pemerintah, aparat keamanan, lembaga riset, hingga masyarakat sipil di tingkat tapak:
+                    </p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <!-- Lembaga Pemerintah -->
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                            <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300 mb-3">Instansi Pemerintah & Aparat</span>
+                            <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+                                <li><strong>KLHK & Manggala Agni:</strong> Kementerian Lingkungan Hidup dan Kehutanan memimpin pencegahan, deteksi dini (SiPongi), penegakan hukum (Gakkum), serta mengerahkan <em>Manggala Agni</em> sebagai brigade pemadam kebakaran hutan garis depan.</li>
+                                <li><strong>BNPB & BPBD:</strong> Badan Nasional Penanggulangan Bencana mengoordinasikan status tanggap darurat, logistik, dukungan operasi udara (helikopter <em>water bombing</em>), dan Teknologi Modifikasi Cuaca (TMC).</li>
+                                <li><strong>TNI & Polri:</strong> Mengerahkan personel Satgas Darat untuk patroli terpadu, pemadaman titik api di lokasi terpencil, serta penyelidikan dan penindakan hukum terhadap pelaku pembakaran.</li>
+                                <li><strong>BMKG:</strong> Menyediakan prakiraan cuaca, pemantauan potensi kekeringan (FDRS/Fire Danger Rating System), analisis arah sebaran asap, serta dukungan data untuk hujan buatan.</li>
+                                <li><strong>BRGM:</strong> Badan Restorasi Gambut dan Mangrove bertugas memulihkan hidrologi gambut rusak melalui pembangunan sekat kanal, sumur bor, dan revegetasi.</li>
+                            </ul>
+                        </div>
+
+                        <!-- NGO & Komunitas -->
+                        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                            <span class="inline-block text-[11px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300 mb-3">NGO, Komunitas & Mitra Sipil</span>
+                            <ul class="space-y-3 text-sm text-slate-700 dark:text-slate-300">
+                                <li><strong>Masyarakat Peduli Api (MPA):</strong> Kelompok relawan warga desa binaan pemerintah yang menjadi ujung tombak deteksi dini, patroli mandiri, dan pemadaman awal sebelum api membesar.</li>
+                                <li><strong>WALHI (Wahana Lingkungan Hidup Indonesia):</strong> Melakukan advokasi kebijakan, pemantauan konsesi perusahaan, pendampingan hukum warga terdampak asap, serta kampanye keadilan ekologis.</li>
+                                <li><strong>WWF Indonesia:</strong> Fokus pada konservasi lanskap hutan dan gambut, mitigasi dampak karhutla terhadap satwa kunci (orangutan/harimau), serta pemberdayaan ekonomi ramah gambut.</li>
+                                <li><strong>Greenpeace Indonesia:</strong> Melakukan investigasi pemetaan titik panas di konsesi perkebunan, kampanye transparansi rantai pasok bebas deforestasi, dan edukasi publik.</li>
+                                <li><strong>CIFOR-ICRAF & WRI Indonesia:</strong> Lembaga riset yang menyediakan data spasial berbasis sains, pemantauan keterbukaan data kehutanan, serta model pengelolaan lanskap berkelanjutan.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- BAGIAN 6: CARA MENGATASI & PENCEGAHAN -->
+                <section id="solusi" class="scroll-mt-36 pt-6 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center gap-2 text-newsRed font-bold text-xs uppercase tracking-wider mb-2">
+                        <span class="w-6 h-0.5 bg-newsRed"></span> Bagian 06 • Peta Jalan Solusi
+                    </div>
+                    <h2 class="font-serif text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white mb-4">
+                        Cara Mengatasi & Mencegah Karhutla: Strategi Jangka Pendek dan Jangka Panjang
+                    </h2>
+                    <p class="mb-6 text-slate-700 dark:text-slate-300">
+                        Memutus siklus karhutla tidak cukup hanya dengan memadamkan api saat asap sudah mengepul. Diperlukan strategi ganda yang menggabungkan respons darurat cepat dan pembenahan ekosistem secara permanen.
+                    </p>
+
+                    <!-- Interactive Tab Switcher: Jangka Pendek vs Jangka Panjang -->
+                    <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 overflow-hidden shadow-sm">
+                        <div class="flex border-b border-slate-200 dark:border-slate-800 bg-slate-100 dark:bg-slate-800/50 p-1.5 gap-1.5">
+                            <button onclick="switchSolutionTab('pendek')" id="tab-pendek" class="flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold bg-newsRed text-white shadow-sm transition">
+                                <i class="fa-solid fa-helicopter mr-1.5"></i>Solusi Jangka Pendek (Tanggap Darurat)
+                            </button>
+                            <button onclick="switchSolutionTab('panjang')" id="tab-panjang" class="flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-white/60 dark:hover:bg-slate-800 transition">
+                                <i class="fa-solid fa-seedling mr-1.5"></i>Solusi Jangka Panjang (Pencegahan Permanen)
+                            </button>
+                        </div>
+
+                        <!-- Konten Tab Jangka Pendek -->
+                        <div id="content-pendek" class="p-6 space-y-4">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-950 text-newsRed flex items-center justify-center font-bold shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Operasi Pemadaman Darat & Mopping Up</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Tim gabungan Manggala Agni, TNI, Polri, dan MPA menyuntikkan air bertekanan tinggi ke dalam lapisan gambut untuk mematikan bara api di bawah permukaan (<em>mopping up</em>) agar api tidak menyala kembali.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-950 text-newsRed flex items-center justify-center font-bold shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Water Bombing via Helikopter</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Menjatuhkan ribuan liter air dari udara pada titik api yang sulit dijangkau jalur darat untuk melokalisasi rambatan kebakaran.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-950 text-newsRed flex items-center justify-center font-bold shrink-0">3</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Teknologi Modifikasi Cuaca (TMC / Hujan Buatan)</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Penyemaian garam (NaCl) ke awan potensial sebelum puncak kekeringan guna memicu hujan buatan yang membasahi lahan gambut dan mengisi embung air.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-red-100 dark:bg-red-950 text-newsRed flex items-center justify-center font-bold shrink-0">4</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Deteksi Dini Berbasis Satelit (SiPongi)</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Pemantauan <em>hotspot</em> secara <em>real-time</em> sehingga tim patroli dapat langsung melakukan verifikasi lapangan (<em>ground check</em>) dalam hitungan jam sebelum api meluas.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Konten Tab Jangka Panjang -->
+                        <div id="content-panjang" class="hidden p-6 space-y-4">
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-700 flex items-center justify-center font-bold shrink-0">1</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Pembasahan Kembali Lahan Gambut (Rewetting) & Sekat Kanal</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Membangun sekat kanal (<em>canal blocking</em>) dan menimbun saluran drainase ilegal untuk menahan air di dalam kubah gambut sehingga lahan tetap basah sepanjang tahun.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-700 flex items-center justify-center font-bold shrink-0">2</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Pembukaan Lahan Tanpa Bakar (PLTB)</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Memberikan insentif, bantuan alat berat (ekskavator mini), serta pelatihan pengolahan limbah biomassa menjadi kompos dan cuka kayu kepada petani kecil agar tidak bergantung pada metode bakar.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-700 flex items-center justify-center font-bold shrink-0">3</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Penegakan Hukum Tegas & Audit Kepatuhan Korporasi</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Mewajibkan setiap pemegang konsesi memiliki menara pantau api, embung air, dan regu pemadam terlatih, serta mencabut izin perusahaan yang terbukti lalai atau membakar lahan.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-3.5">
+                                <div class="w-8 h-8 rounded-lg bg-emerald-100 dark:bg-emerald-950 text-emerald-700 flex items-center justify-center font-bold shrink-0">4</div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 dark:text-white">Revitalisasi Ekonomi & Paludikultur</h4>
+                                    <p class="text-sm text-slate-600 dark:text-slate-400">Mengembangkan budidaya tanaman asli rawa gambut yang bernilai ekonomi tanpa perlu mengeringkan lahan (seperti sagu, purun, jelutung, dan perikanan rawa).</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Tags & Editorial Footer -->
+                <div class="pt-6 border-t border-slate-200 dark:border-slate-800 flex flex-wrap items-center gap-2">
+                    <span class="text-xs font-bold text-slate-500 mr-1"><i class="fa-solid fa-tags mr-1"></i>Topik Terkait:</span>
+                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300">#KarhutlaIndonesia</span>
+                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300">#KabutAsap</span>
+                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300">#RestorasiGambut</span>
+                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300">#ManggalaAgni</span>
+                    <span class="px-3 py-1 rounded-lg bg-slate-200/70 dark:bg-slate-800 text-xs font-medium text-slate-700 dark:text-slate-300">#KrisisIklim</span>
+                </div>
+
+                <!-- INTERACTIVE READER COMMENTS SECTION -->
+                <section id="komentar" class="pt-8 border-t border-slate-200 dark:border-slate-800">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="font-serif text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">
+                            Diskusi & Suara Pembaca (<span id="comment-count">3</span>)
+                        </h3>
+                        <span class="text-xs text-slate-500">Jaga diskusi tetap santun & konstruktif</span>
+                    </div>
+
+                    <!-- Form Tambah Komentar -->
+                    <form id="comment-form" onsubmit="addComment(event)" class="bg-white dark:bg-slate-900 p-5 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm mb-6 space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="comment-name" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nama Anda *</label>
+                                <input type="text" id="comment-name" required placeholder="Contoh: Budi Santoso" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-newsRed">
+                            </div>
+                            <div>
+                                <label for="comment-city" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Domisili / Kota</label>
+                                <input type="text" id="comment-city" placeholder="Contoh: Pekanbaru, Riau" class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-newsRed">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="comment-text" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tanggapan atau Pengalaman Terkait Karhutla *</label>
+                            <textarea id="comment-text" rows="3" required placeholder="Tuliskan pandangan Anda mengenai pencegahan karhutla atau kondisi udara di daerah Anda..." class="w-full px-3.5 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm focus:outline-none focus:ring-2 focus:ring-newsRed"></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="px-5 py-2.5 rounded-xl bg-newsRed hover:bg-red-700 text-white text-sm font-bold shadow-sm transition flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> Kirim Komentar
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Daftar Komentar -->
+                    <div id="comment-list" class="space-y-4">
+                        <!-- Komentar 1 -->
+                        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-full bg-emerald-100 text-emerald-800 font-bold text-xs flex items-center justify-center">RH</div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">Rizky Hidayat <span class="text-xs font-normal text-slate-500">• Palangka Raya</span></p>
+                                        <p class="text-[11px] text-slate-400">2 jam yang lalu</p>
+                                    </div>
+                                </div>
+                                <button onclick="likeComment(this)" class="text-xs text-slate-500 hover:text-newsRed flex items-center gap-1 transition">
+                                    <i class="fa-regular fa-thumbs-up"></i> <span>24</span>
+                                </button>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">
+                                Sekat kanal dan edukasi PLTB ke petani lokal memang paling krusial. Kalau petani kecil dikasih solusi alat pembuka lahan tanpa bakar yang terjangkau, mereka pasti mau beralih. Untuk korporasi nakal, cabut izinnya tanpa kompromi!
+                            </p>
+                        </div>
+
+                        <!-- Komentar 2 -->
+                        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-full bg-amber-100 text-amber-800 font-bold text-xs flex items-center justify-center">SM</div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">Siti Marlina <span class="text-xs font-normal text-slate-500">• Jambi</span></p>
+                                        <p class="text-[11px] text-slate-400">4 jam yang lalu</p>
+                                    </div>
+                                </div>
+                                <button onclick="likeComment(this)" class="text-xs text-slate-500 hover:text-newsRed flex items-center gap-1 transition">
+                                    <i class="fa-regular fa-thumbs-up"></i> <span>18</span>
+                                </button>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">
+                                Salut untuk tim Manggala Agni, MPA, dan relawan yang berjibaku siang malam di lahan gambut. Semoga pemerintah daerah lebih cepat mendistribusikan masker N95 saat indeks ISPU mulai masuk kategori tidak sehat.
+                            </p>
+                        </div>
+
+                        <!-- Komentar 3 -->
+                        <div class="p-4 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800">
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex items-center gap-2.5">
+                                    <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-800 font-bold text-xs flex items-center justify-center">DW</div>
+                                    <div>
+                                        <p class="text-sm font-bold text-slate-900 dark:text-white">Dimas Wardhana <span class="text-xs font-normal text-slate-500">• Pontianak</span></p>
+                                        <p class="text-[11px] text-slate-400">5 jam yang lalu</p>
+                                    </div>
+                                </div>
+                                <button onclick="likeComment(this)" class="text-xs text-slate-500 hover:text-newsRed flex items-center gap-1 transition">
+                                    <i class="fa-regular fa-thumbs-up"></i> <span>11</span>
+                                </button>
+                            </div>
+                            <p class="text-sm text-slate-700 dark:text-slate-300">
+                                Artikel yang sangat lengkap dan berimbang. Penjelasan tentang gambut kering tak balik dan asas strict liability membuka wawasan bahwa masalah ini bukan sekadar cuaca panas biasa.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+
+            <!-- RIGHT SIDEBAR COLUMN (Widgets & Related News) -->
+            <aside class="lg:col-span-4 space-y-6 lg:sticky lg:top-28">
+                
+                <!-- WIDGET 1: DATA & STATISTIK KARHUTLA INTERAKTIF -->
+                <div id="statistik-widget" class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden">
+                    <div class="bg-slate-900 text-white px-5 py-4 flex items-center justify-between">
+                        <div>
+                            <span class="text-[10px] font-bold uppercase tracking-widest text-amber-400 block">Dashboard Pantauan</span>
+                            <h3 class="font-serif font-bold text-base">Data & Statistik Karhutla</h3>
+                        </div>
+                        <i class="fa-solid fa-chart-column text-emberOrange text-xl"></i>
+                    </div>
+
+                    <div class="p-5 space-y-5">
+                        <!-- Filter Wilayah Pantauan -->
+                        <div>
+                            <label for="region-select" class="block text-xs font-semibold text-slate-500 dark:text-slate-400 mb-1.5">Pilih Wilayah Pantauan:</label>
+                            <select id="region-select" onchange="updateStatsWidget()" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-semibold text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-2 focus:ring-newsRed">
+                                <option value="nasional">Nasional (Seluruh Indonesia)</option>
+                                <option value="kalteng">Kalimantan Tengah</option>
+                                <option value="sumsel">Sumatera Selatan</option>
+                                <option value="riau">Riau</option>
+                                <option value="kalbar">Kalimantan Barat</option>
+                            </select>
+                        </div>
+
+                        <!-- Metric Cards -->
+                        <div class="grid grid-cols-2 gap-3">
+                            <div class="p-3.5 rounded-xl bg-red-50 dark:bg-red-950/40 border border-red-100 dark:border-red-900/50">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 block">Titik Panas (Hotspot)</span>
+                                <span id="stat-hotspot" class="text-2xl font-black text-newsRed">418</span>
+                                <span class="text-[10px] text-red-700 dark:text-red-400 block mt-0.5"><i class="fa-solid fa-arrow-trend-up mr-1"></i>Confidence ≥ 80%</span>
+                            </div>
+                            <div class="p-3.5 rounded-xl bg-amber-50 dark:bg-amber-950/40 border border-amber-100 dark:border-amber-900/50">
+                                <span class="text-[11px] font-semibold text-slate-600 dark:text-slate-400 block">Indeks ISPU (PM2.5)</span>
+                                <span id="stat-ispu" class="text-2xl font-black text-emberOrange">164</span>
+                                <span id="stat-ispu-status" class="text-[10px] font-bold text-amber-800 dark:text-amber-300 block mt-0.5">Kategori: Tidak Sehat</span>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 flex items-center justify-between">
+                            <div>
+                                <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">Estimasi Area Terbakar (YTD)</span>
+                                <span id="stat-area" class="text-lg font-extrabold text-slate-900 dark:text-white">267.900 Ha</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-[11px] font-semibold text-slate-500 dark:text-slate-400 block">Porsi Lahan Gambut</span>
+                                <span id="stat-peat" class="text-sm font-bold text-emerald-600">42% Gambut</span>
+                            </div>
+                        </div>
+
+                        <!-- Visual Bar Sebaran Provinsi -->
+                        <div>
+                            <div class="flex justify-between text-xs font-semibold mb-2">
+                                <span class="text-slate-700 dark:text-slate-300">Proporsi Kerawanan Wilayah</span>
+                                <span class="text-slate-400">Sumber: SiPongi KLHK</span>
+                            </div>
+                            <div class="space-y-2.5 text-xs">
+                                <div>
+                                    <div class="flex justify-between mb-1"><span>Kalimantan Tengah</span><span class="font-bold">31%</span></div>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-newsRed h-full rounded-full" style="width: 31%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1"><span>Sumatera Selatan</span><span class="font-bold">26%</span></div>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-emberOrange h-full rounded-full" style="width: 26%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1"><span>Kalimantan Barat</span><span class="font-bold">22%</span></div>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-amber-500 h-full rounded-full" style="width: 22%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1"><span>Riau & Jambi</span><span class="font-bold">21%</span></div>
+                                    <div class="w-full bg-slate-200 dark:bg-slate-800 h-2 rounded-full overflow-hidden">
+                                        <div class="bg-yellow-500 h-full rounded-full" style="width: 21%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WIDGET 2: PANDUAN KESEHATAN SAAT KABUT ASAP -->
+                <div class="bg-gradient-to-br from-emerald-900 to-slate-900 text-white rounded-2xl p-5 shadow-sm border border-emerald-800">
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/20 border border-emerald-400/30 flex items-center justify-center text-emerald-300">
+                            <i class="fa-solid fa-mask-face text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-base">Panduan Warga Terdampak Asap</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs text-emerald-100/90 leading-relaxed">
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Gunakan masker standar <strong>N95 atau KN95</strong> saat beraktivitas di luar ruangan (masker kain biasa tidak menyaring partikel PM2.5).</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Tutup rapat ventilasi rumah dan nyalakan <em>air purifier</em> jika kualitas udara masuk level tidak sehat.</li>
+                        <li class="flex items-start gap-2"><i class="fa-solid fa-check text-emerald-400 mt-0.5"></i> Perbanyak konsumsi air putih dan segera ke puskesmas jika mengalami sesak napas atau nyeri dada.</li>
+                    </ul>
+                </div>
+
+                <!-- WIDGET 3: BERITA TERKAIT -->
+                <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 p-5 shadow-sm">
+                    <h3 class="font-serif font-bold text-lg text-slate-900 dark:text-white pb-3 mb-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                        <span>Berita Terkait</span>
+                        <span class="w-2 h-2 rounded-full bg-newsRed"></span>
+                    </h3>
+
+                    <div class="space-y-4">
+                        <a href="#organisasi" class="group block">
+                            <span class="text-[11px] font-bold text-emberOrange uppercase">Lapangan</span>
+                            <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200 group-hover:text-newsRed transition leading-snug mt-0.5">
+                                Kisah Manggala Agni Bertahan Berminggu-minggu di Tengah Hutan Gambut Tanpa Sinyal
+                            </h4>
+                            <span class="text-[11px] text-slate-400 mt-1 block">Kemarin • 5 menit baca</span>
+                        </a>
+
+                        <div class="border-t border-slate-100 dark:border-slate-800 pt-3">
+                            <a href="#pelaku" class="group block">
+                                <span class="text-[11px] font-bold text-newsRed uppercase">Investigasi</span>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200 group-hover:text-newsRed transition leading-snug mt-0.5">
+                                    Menelusuri Aliran Dana di Balik Pembukaan Lahan Ilegal Kawasan Hidrologis Gambut
+                                </h4>
+                                <span class="text-[11px] text-slate-400 mt-1 block">2 hari lalu • 9 menit baca</span>
+                            </a>
+                        </div>
+
+                        <div class="border-t border-slate-100 dark:border-slate-800 pt-3">
+                            <a href="#solusi" class="group block">
+                                <span class="text-[11px] font-bold text-emerald-600 uppercase">Inovasi Desa</span>
+                                <h4 class="font-bold text-sm text-slate-800 dark:text-slate-200 group-hover:text-newsRed transition leading-snug mt-0.5">
+                                    Sukses Sekat Kanal & Paludikultur: Desa di Pulang Pisau Bebas Asap 4 Tahun Berturut-turut
+                                </h4>
+                                <span class="text-[11px] text-slate-400 mt-1 block">3 hari lalu • 6 menit baca</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 text-slate-400 border-t border-slate-800 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 pb-8 border-b border-slate-800">
+                <div class="md:col-span-2">
+                    <div class="flex items-center gap-2.5 mb-3">
+                        <div class="w-8 h-8 rounded-lg bg-newsRed flex items-center justify-center text-white">
+                            <i class="fa-solid fa-fire-flame-curved"></i>
+                        </div>
+                        <span class="font-serif font-black text-xl text-white">NUSANTARA<span class="text-newsRed">HIJAU</span></span>
+                    </div>
+                    <p class="text-sm text-slate-400 max-w-md leading-relaxed">
+                        Portal jurnalisme lingkungan, data iklim, dan investigasi kehutanan Indonesia. Menyajikan informasi akurat berbasis sains untuk mendorong tata kelola sumber daya alam yang adil dan berkelanjutan.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Rubrik Utama</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#pendahuluan" class="hover:text-white transition">Nasional & Daerah</a></li>
+                        <li><a href="#faktor" class="hover:text-white transition">Lingkungan & Gambut</a></li>
+                        <li><a href="#pelaku" class="hover:text-white transition">Investigasi & Hukum</a></li>
+                        <li><a href="#statistik-widget" class="hover:text-white transition">Infografis & Data</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold text-sm uppercase tracking-wider mb-3">Kanal Pengaduan</h4>
+                    <p class="text-xs text-slate-400 mb-3">Temukan indikasi pembakaran lahan atau titik api di sekitar Anda? Laporkan segera ke posko terdekat atau Gakkum KLHK.</p>
+                    <button onclick="showToast('Nomor Hotline Darurat Karhutla & Gakkum: 0800-100-7000')" class="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white text-xs font-semibold border border-slate-700 transition">
+                        <i class="fa-solid fa-phone-volume mr-1.5 text-emberOrange"></i>Hotline Lapor Karhutla
+                    </button>
+                </div>
+            </div>
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-2">
+                <p>&copy; 2026 NusantaraHijau.id — Media Jurnalisme Lingkungan Indonesia. Seluruh hak cipta dilindungi.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-slate-300">Pedoman Media Siber</a>
+                    <a href="#" class="hover:text-slate-300">Redaksi</a>
+                    <a href="#" class="hover:text-slate-300">Metodologi Data</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic for Interactivity -->
+    <script>
+        // 1. Dark Mode Toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const icon = document.getElementById('theme-icon');
+            const label = document.getElementById('theme-label');
+            
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            
+            if (isDark) {
+                icon.className = 'fa-solid fa-sun text-amber-400';
+                label.textContent = 'Mode Terang';
+                showToast('Mode Gelap diaktifkan untuk kenyamanan membaca');
+            } else {
+                icon.className = 'fa-solid fa-moon text-amber-400';
+                label.textContent = 'Mode Gelap';
+                showToast('Mode Terang diaktifkan');
+            }
+        }
+
+        // 2. Dynamic Font Size Switcher
+        function setFontSize(size) {
+            const article = document.getElementById('article-content');
+            article.classList.remove('article-body-sm', 'article-body-md', 'article-body-lg');
+            article.classList.add(`article-body-${size}`);
+
+            // Update active button state
+            ['sm', 'md', 'lg'].forEach(s => {
+                const btn = document.getElementById(`btn-font-${s}`);
+                if (s === size) {
+                    btn.classList.add('bg-slate-700', 'text-white', 'font-semibold');
+                } else {
+                    btn.classList.remove('bg-slate-700', 'text-white', 'font-semibold');
+                }
+            });
+        }
+
+        // 3. Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // 4. Switch Tab Solusi (Jangka Pendek vs Jangka Panjang)
+        function switchSolutionTab(type) {
+            const btnPendek = document.getElementById('tab-pendek');
+            const btnPanjang = document.getElementById('tab-panjang');
+            const contentPendek = document.getElementById('content-pendek');
+            const contentPanjang = document.getElementById('content-panjang');
+
+            if (type === 'pendek') {
+                btnPendek.className = 'flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold bg-newsRed text-white shadow-sm transition';
+                btnPanjang.className = 'flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-white/60 dark:hover:bg-slate-800 transition';
+                contentPendek.classList.remove('hidden');
+                contentPanjang.classList.add('hidden');
+            } else {
+                btnPanjang.className = 'flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold bg-emerald-700 text-white shadow-sm transition';
+                btnPendek.className = 'flex-1 py-2.5 px-4 rounded-xl text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-300 hover:bg-white/60 dark:hover:bg-slate-800 transition';
+                contentPanjang.classList.remove('hidden');
+                contentPendek.classList.add('hidden');
+            }
+        }
+
+        // 5. Interactive Regional Statistics Widget
+        const regionalStatsData = {
+            nasional: { hotspot: '418', ispu: '164', status: 'Kategori: Tidak Sehat', area: '267.900 Ha', peat: '42% Gambut' },
+            kalteng:  { hotspot: '132', ispu: '189', status: 'Kategori: Tidak Sehat', area: '84.200 Ha', peat: '61% Gambut' },
+            sumsel:   { hotspot: '109', ispu: '172', status: 'Kategori: Tidak Sehat', area: '69.500 Ha', peat: '54% Gambut' },
+            riau:     { hotspot: '88',  ispu: '141', status: 'Kategori: Sedang - Tidak Sehat', area: '48.100 Ha', peat: '68% Gambut' },
+            kalbar:   { hotspot: '89',  ispu: '155', status: 'Kategori: Tidak Sehat', area: '66.100 Ha', peat: '49% Gambut' }
+        };
+
+        function updateStatsWidget() {
+            const region = document.getElementById('region-select').value;
+            const data = regionalStatsData[region];
+            
+            document.getElementById('stat-hotspot').textContent = data.hotspot;
+            document.getElementById('stat-ispu').textContent = data.ispu;
+            document.getElementById('stat-ispu-status').textContent = data.status;
+            document.getElementById('stat-area').textContent = data.area;
+            document.getElementById('stat-peat').textContent = data.peat;
+        }
+
+        // 6. Interactive Comments System
+        function addComment(event) {
+            event.preventDefault();
+            const nameInput = document.getElementById('comment-name');
+            const cityInput = document.getElementById('comment-city');
+            const textInput = document.getElementById('comment-text');
+
+            const name = nameInput.value.trim();
+            const city = cityInput.value.trim() || 'Pembaca NusantaraHijau';
+            const text = textInput.value.trim();
+
+            if (!name || !text) return;
+
+            // Buat inisial nama
+            const initials = name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+            const commentList = document.getElementById('comment-list');
+            const newComment = document.createElement('div');
+            newComment.className = 'p-4 rounded-2xl bg-red-50/40 dark:bg-slate-900 border border-red-200 dark:border-slate-700 transition-all';
+            newComment.innerHTML = `
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 rounded-full bg-newsRed text-white font-bold text-xs flex items-center justify-center">${escapeHTML(initials)}</div>
+                        <div>
+                            <p class="text-sm font-bold text-slate-900 dark:text-white">${escapeHTML(name)} <span class="text-xs font-normal text-slate-500">• ${escapeHTML(city)}</span></p>
+                            <p class="text-[11px] text-emerald-600 font-medium">Baru saja diterbitkan</p>
+                        </div>
+                    </div>
+                    <button onclick="likeComment(this)" class="text-xs text-slate-500 hover:text-newsRed flex items-center gap-1 transition">
+                        <i class="fa-regular fa-thumbs-up"></i> <span>0</span>
+                    </button>
+                </div>
+                <p class="text-sm text-slate-700 dark:text-slate-300">${escapeHTML(text)}</p>
+            `;
+
+            commentList.prepend(newComment);
+
+            // Update jumlah komentar
+            const countEl = document.getElementById('comment-count');
+            countEl.textContent = parseInt(countEl.textContent) + 1;
+
+            // Reset form & beri notifikasi
+            nameInput.value = '';
+            cityInput.value = '';
+            textInput.value = '';
+            showToast('Terima kasih! Komentar Anda berhasil ditambahkan.');
+        }
+
+        function likeComment(btn) {
+            const countSpan = btn.querySelector('span');
+            const icon = btn.querySelector('i');
+            let count = parseInt(countSpan.textContent);
+            
+            if (btn.classList.contains('text-newsRed')) {
+                btn.classList.remove('text-newsRed', 'font-bold');
+                icon.className = 'fa-regular fa-thumbs-up';
+                countSpan.textContent = count - 1;
+            } else {
+                btn.classList.add('text-newsRed', 'font-bold');
+                icon.className = 'fa-solid fa-thumbs-up';
+                countSpan.textContent = count + 1;
+            }
+        }
+
+        // 7. Copy Article Link Helper (Safe for iFrame)
+        function copyArticleLink() {
+            const tempInput = document.createElement('input');
+            tempInput.value = window.location.href;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand('copy');
+                showToast('Tautan berita berhasil disalin ke papan klip!');
+            } catch (err) {
+                showToast('Gagal menyalin tautan.');
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // 8. Custom Toast Message Box (No alert())
+        function showToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = 'bg-slate-900 text-white text-xs sm:text-sm px-4 py-3 rounded-xl shadow-lg border border-slate-700 flex items-center gap-2.5 transform transition-all duration-300 translate-y-2 opacity-0 pointer-events-auto';
+            toast.innerHTML = `<i class="fa-solid fa-circle-info text-emberOrange"></i><span>${escapeHTML(message)}</span>`;
+            
+            container.appendChild(toast);
+            
+            requestAnimationFrame(() => {
+                toast.classList.remove('translate-y-2', 'opacity-0');
+            });
+
+            setTimeout(() => {
+                toast.classList.add('opacity-0', 'translate-y-2');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // 9. Highlight Active Section Pill on Scroll
+        window.addEventListener('scroll', () => {
+            const sections = ['pendahuluan', 'faktor', 'dampak', 'pelaku', 'organisasi', 'solusi'];
+            const pills = document.querySelectorAll('.nav-pill');
+            let current = '';
+
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const top = section.offsetTop - 220;
+                    if (window.scrollY >= top) {
+                        current = id;
+                    }
+                }
+            });
+
+            pills.forEach(pill => {
+                const target = pill.getAttribute('data-target');
+                if (target === current) {
+                    pill.className = 'nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-newsRed text-white shadow-sm transition';
+                } else {
+                    pill.className = 'nav-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-newsRed transition';
+                }
+            });
+        });
+
+        function escapeHTML(str) {
+            const div = document.createElement('div');
+            div.textContent = str;
+            return div.innerHTML;
+        }
+    </script>
+</body>
+</html>
+```
